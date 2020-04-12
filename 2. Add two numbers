@@ -1,0 +1,57 @@
+/*
+
+You are given two non-empty linked lists representing two non-negative integers.
+The digits are stored in reverse order and each of their nodes contain a single digit.
+Add the two numbers and return it as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+Example:
+
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+Explanation: 342 + 465 = 807.
+
+ */
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ *     //is this a init function in java?
+ * }
+ */
+
+/*
+What is the biggest size
+ */
+
+
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode tail = new ListNode(0);
+        ListNode dummy = tail;
+        // set up object on stack. at this time, they point at a same object
+        int sum = 0;
+        while (l1 != null || l2 != null || sum !=0){
+            sum += (l1== null? 0:l1.val) + (l2 == null? 0:l2.val);
+            tail.next = new ListNode(sum%10);
+            // store this value in linked list
+            tail = tail.next;
+            // next digit
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 =l2.next;
+            sum /= 10;
+            // this is a carry
+        }
+        return dummy.next;
+        // here we return the obj dummy points to
+    }
+}
+
+//what is the diff between using dummy head or just let the head point to first element? what's the benefits? dummy
+//node can handle some issues such as boundray. you don't need consider if this node is null or not. etc
+//what's the meaning of set up at heap or stack? recall C, malloc() allocates memory in heap, you don't need to
+//free it in java tho.
