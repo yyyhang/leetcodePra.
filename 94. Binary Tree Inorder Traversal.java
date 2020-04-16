@@ -48,7 +48,7 @@ class Solution {
             curr = curr.right;
             // then right branch
         }
-        return curr;
+        return res;
     }
 }
 //O(n)
