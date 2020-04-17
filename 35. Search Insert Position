@@ -1,0 +1,80 @@
+/*
+Given a sorted array and a target value, return the index if the target is found.
+ If not, return the index where it would be if it were inserted in order.
+
+You may assume no duplicates in the array.
+
+Example 1:
+
+Input: [1,3,5,6], 5
+Output: 2
+Example 2:
+
+Input: [1,3,5,6], 2
+Output: 1
+Example 3:
+
+Input: [1,3,5,6], 7
+Output: 4
+Example 4:
+
+Input: [1,3,5,6], 0
+Output: 0
+ */
+
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        if (nums == null || nums.length == 0) return 0;
+        // what the dif betw nums == null and nums.length == 0
+        int start = 0;
+        int end = num.length - 1;
+        // start at index 0 -> end is alway length-1
+        // when pointers adjoin each other, end the while loop (the number need to add)
+        while (start+1<end){
+            // why here is start +1 ??? if we don't do this, at the end of the loop, start will equl to end
+            int mid = start + (end- start)/2;
+            // why not just (start + end)/2 ??
+            if (nums[mid] < target) start = mid;
+            // NB: whisch one needs change start
+            else if (nums[mid] > target) end = mid;
+            // update left or right pointer
+            else return mid;
+            // it means the mid is the ecact number we need
+        }
+        // if the code ecx to here, that means the num can not be found in the array
+        if (nums[end] < target) return end+1;
+        // hrer is nums[end], not just end; in this case, the end pointer didn't change
+        // the num bigger than all the nums in the array
+        else if (nums[start] >= target) return start;
+        // the num is the samallest, target <= nums[0], return start or 0 (start didn't change)
+        else return end;
+        // as this number need to insert betw these two pointers, the index should always be the right pointer
+        // if end num == end, it is also return end
+
+    }
+}
+
+/*
+First of all, start + (end - start) / 2 works even if you are using pointers, as long as end - start doesn't overflow1.
+
+int *start = ..., *end = ...;
+int *mid = start + (end - start) / 2; // works as expected
+int *mid = (start + end) / 2;         // type error, won't compile
+Second of all, start + (end - start) / 2 won't overflow if start and end are large positive numbers. With signed operands, overflow is undefined:
+
+int start = 0x7ffffffe, end = 0x7fffffff;
+int mid = start + (end - start) / 2; // works as expected
+int mid = (start + end) / 2;         // overflow... undefined
+(Note that end - start may overflow, but only if start < 0 or end < 0.)
+Finally, you often want to round towards the start element.
+
+int start = -3, end = 0;
+int mid = start + (end - start) / 2; // -2, closer to start
+int mid = (start + end) / 2;         // -1, surprise!
+
+_____________________________________________
+
+If s.length() == 0, then you have an empty bucket. There is no water inside. On the other hand, if s == null,
+then you have no bucket. You can not possibly hold water until you procure a bucket.
+
+ */
