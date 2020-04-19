@@ -107,6 +107,7 @@ class Solution_from_lc {
 
         return targetRange;
     }
+
 }
 
 // but this one is funny, if you input [2,1] 1, the output will be [-1,-1]
