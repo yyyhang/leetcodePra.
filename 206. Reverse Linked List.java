@@ -19,6 +19,14 @@ Could you implement both?
  *     ListNode(int x) { val = x; }
  * }
  */
+
+/*
+we need three pointers, one point to current node. we need to change its point point to its prenode later
+one pointer point to curr.next_node, to make sure the rest nodes won't be lost
+one pointer point to  curr.pre_node, we need to change curr pointer poin to it
+(the first pre_pointer is dummy)
+then move these pointers to next position until reach the boundry
+ */
 class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode pre = null;
@@ -26,10 +34,14 @@ class Solution {
         ListNode next;
         while (cur != null){
             next = cur.next;
+            // let pointer next record the position of curr.next
             cur.next = pre;
+            // then change curr's pointter point to pre
             pre = cur;
             cur = next;
+            // moving posdition of poiners
         }
         return pre;
+        // finally, return the last node (pre move to cur and ex-cur is null now)
     }
 }
