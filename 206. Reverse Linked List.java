@@ -30,6 +30,7 @@ then move these pointers to next position until reach the boundry
 class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode pre = null;
+        // as pre just point to an exsit node, we don't need to allcate a new memory for it
         ListNode cur = head;
         ListNode next;
         while (cur != null){

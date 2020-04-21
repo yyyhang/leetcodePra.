@@ -30,8 +30,10 @@ class Solution {
         if (n == 0) return n;
         int t0 = 0;
         int t1 = 1;
-        int t2 = 2;
+        int t2 = 1;
         int res = 1;
+        // if n == 1 || n == 2, it will return 1 directly
+        // this method no need to create a new array to hold the result
         for (int i = 3; i<= n; i++){
             res = t0 + t1 + t2;
             t0 = t1;

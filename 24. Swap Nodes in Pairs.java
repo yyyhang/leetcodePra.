@@ -35,3 +35,27 @@ class Solution {
         pre.next.next = dummy;
     }
 }
+
+/*
+class Solution2 {
+    public ListNode swapPairs(ListNode head) {
+        int cnt = 1;
+        //int K = 2;
+        ListNode dummy  = new ListNode(0);
+        ListNode tmp;
+        dummy.next = head;
+        ListNode pre = dummy.next;
+        ListNode cur = pre.next;
+        while (cnt < 2){
+            tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+            cnt++;
+        }
+        dummy.next.next = cur;
+        
+    }
+}
+change it later
+*/
