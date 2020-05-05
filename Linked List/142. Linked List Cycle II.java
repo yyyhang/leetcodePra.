@@ -52,8 +52,39 @@ Can you solve it without using extra space?
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        ListNode = fast;
-        ListNode = slow;
+        ListNode fast = head;
+        ListNode slow = head;
+        // at first, we check if there is a cycle
+        // NB: here is &&, not ||, but why? think about if there is just one element
+        while (fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) break;
+        }
+        if (fast == null || fast.next == null) return null;
+        // then we check where is the meet point, put one to the start, and let them have same speed
+        slow = head;
+        while (slow != fast){
+            slow = slow.next;
+            fast = fast.next;
+            // why it is .next rather than .next.next ?? bcz we neet let the path length they have is same
+        }
+        return fast;
+    }
+}
+
+/*
+if m is the length brfore entering cycle, n is the length of the cycle, y is the length from cycle start to
+meeting point, x is the length of meeting point to cycle start, k is the number of the cycle
+then we have : m+nk+y = 2(m+y) => m+kn = 2m+y => m = kn- y => m = kn - (n-x) ==> m = n(k-1)+x
+so, if they start at same speed, they will meet each at the cycle start point
+ */
+
+/*
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
         // at first, we check if there is a cycle
         while (fast != slow){
             fast = fast.next.next;
@@ -67,5 +98,8 @@ public class Solution {
             fast = fast.next;
             // why it is .next rather than .next.next ?? bcz we neet let the path length they have is same
         }
+        return fast;
     }
 }
+
+ */
