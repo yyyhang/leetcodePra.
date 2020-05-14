@@ -35,7 +35,7 @@ class Solution {
             int mid = start + (end- start)/2;
             // why not just (start + end)/2 ??
             if (nums[mid] < target) start = mid;
-            // NB: whisch one needs change start
+            // NB: which one needs change start
             else if (nums[mid] > target) end = mid;
             // update left or right pointer
             else return mid;

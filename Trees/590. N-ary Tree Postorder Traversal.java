@@ -36,7 +36,7 @@ The total number of nodes is between [0, 10^4]
 
 class Solution {
     public List<Integer> postorder(Node root) {
-        LnkedList<Node> stack = new LinkedList<>();
+        LinkedList<Node> stack = new LinkedList<>();
         LinkedList<Integer> ans =new LinkedList<>();
 
         if (root == null) return ans;
