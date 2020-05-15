@@ -70,4 +70,3 @@ class Solution_2 {
     }
 }
 // if hi next to lo, nums[hi]<nums[lo], then the lo will increase 1 to equal hi
-// but i stll feel a little confused how to prove it
