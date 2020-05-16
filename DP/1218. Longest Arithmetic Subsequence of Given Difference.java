@@ -45,7 +45,7 @@ class Solution {
 }
 //  https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-1218-longest-arithmetic-subsequence-of-given-difference/
 
-// this one is much faster
+// this one is much faster, but i don;t understand
 
 class Solution_2 {
     public int longestSubsequence(int[] arr, int difference) {

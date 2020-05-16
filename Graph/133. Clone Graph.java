@@ -85,6 +85,11 @@ class Node {
 }
 */
 
+// for this problem, we have two ways to copy it
+// the first one is we copy a node. and at the meantime, we create all the neighbours, then let the node points to them
+// and we chage to a new node that we never travasal before
+// another way is use DFS to all the sub nodes
+
 // neighbours is a list
 
 // first we copy nodes, then travesal nodes to get connections
@@ -107,6 +112,7 @@ class Solution {
                     map.put(nei, new Node(nei.val, new ArrayList<>()));
                     queue.add(nei);
                 }
+                // with the hashmap we can easily add the new neighours to the new nodes
                 map.get(cur).neigghbors.add(map.get(nei));
             }
         }
