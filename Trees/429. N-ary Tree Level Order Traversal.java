@@ -66,6 +66,7 @@ class Solution {
         return res;
     }
 }
+// for bfs we need size() for level order
 
 // what the diff betw isEmpty() and empty()?
 
