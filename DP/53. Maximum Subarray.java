@@ -14,7 +14,7 @@ which is more subtle.
  */
 
 /*
-for each element, if the previous sum is a positive number, it need to add it to become a greater one.
+for each element, if the previous sum is a positive number, it needs to add it to become a greater one.
 But if the previous one is a negative number, the thing we need to do is set it as the first element of a new subset
 for example:
 [-2,1,-3,4,-1,2,1,-5,4]
