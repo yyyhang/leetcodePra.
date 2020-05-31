@@ -25,9 +25,9 @@ class Solution {
         return min(nums, 0, nums.length-1);
     }
 
-    private minFind(int[] nums, int lo, int hi){
+    private int minFind(int[] nums, int lo, int hi){
         // if we only have 1 or 2 elements
-        if (lo+1 >= hi) return min(nums[lo], nums[hi]);
+        if (lo+1 >= hi) return Math.min(nums[lo], nums[hi]);
 
         // sorted. we return the minimum element
         if (nums[lo] < nums[hi]) return nums[lo];
@@ -36,7 +36,7 @@ class Solution {
         int mid = lo + (hi-lo)/2;
         // avoid overflow
 
-        return min(minFind(nums, lo, mid-1), minFind(nums, mid, hi));
+        return Math.min(minFind(nums, lo, mid-1), minFind(nums, mid, hi));
     }
 }
 
@@ -53,6 +53,7 @@ class Solution_1 {
 
 // Binary Search
 // you wanna look at the unsorted side and find the minimum element, and leave the sorted side aside
+// we use this to find the boundary. e.g 7,0
 // https://www.youtube.com/watch?v=IzHR_U8Ly6c
 // maybe in the future, if search some value in an ordered array, bs is an option, as it can find the max/min value
 // similar to 34
