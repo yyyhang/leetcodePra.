@@ -23,6 +23,22 @@ Follow up: Your solution should be in logarithmic complexity.
 
 class Solution {
     public int findPeakElement(int[] nums) {
-
+        int start = 0,  end = nums.length - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            // as we stop at the start next to end, the mid + 1 will not excced the bound
+            // if left < right, we can sure left side have at least one max value
+            if (nums[mid] > nums[mid + 1]) end = mid;
+            // else, we have a max value at right side
+            else start = mid;
+        }
+        if (nums[start] > nums[end]) return start;
+        else return end;
     }
 }
+
+// 100%
+
+// for binary search, we can use the linear drawing
+
+// https://www.youtube.com/watch?v=etuTPmks7Dc
