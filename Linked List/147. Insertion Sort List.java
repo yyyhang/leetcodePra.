@@ -91,8 +91,10 @@ class Solution_2 {
             }
             //insert current node between prev and prev.next
             ListNode nextNode=curr.next;
+            // update the linked list
             curr.next=(prev.next);
             prev.next=(curr);
+            // change the pointer
             curr=nextNode;
         }
         return dummy.next;
