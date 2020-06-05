@@ -47,7 +47,7 @@ class Solution {
 
 // ---------------------------------------- //
 
-class Solution {
+class Solution_2 {
     public List<List<Integer>> permute(int[] nums) {
         if (nums == null || nums.length == 0) return null;
         List<List<Integer>> result = new LinkedList<List<Integer>>();
@@ -61,11 +61,8 @@ class Solution {
             // note that if we need add a list, we need deep copy
             result.add(new LinkedList<Integer>(curList));
         } else {
-            // we choose a number that never appear
-            int preNum = Integer.MIN_VALUE;
             for (int idx = 0; idx < nums.length; idx++) {
                 if (used[idx] == false) {
-                    preNum = nums[idx];
                     curList.add(nums[idx]);
                     used[idx] = true;
                     getPermutation(nums, used, curList, result);
@@ -78,11 +75,11 @@ class Solution {
     }
 }
 
-//  2 ms, faster than 50.31%
+// 1 ms, faster than 91.03%
 
 //-------------------------//
 
-class Solution {
+class Solution_3 {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
         if(nums.length==0)
@@ -115,44 +112,30 @@ class Solution {
 
 //-----------------//
 
-class Solution {
-
+class Solution_4 {
     //list to store all the permutaions of list
     List<List<Integer>>res;
     public List<List<Integer>> permute(int[] nums) {
         //initializing the res
         res=new ArrayList<>();
-
         // visited array to keep track of indexes visited already
-        boolean vis[]=new boolean[nums.length];
-
+        boolean vis[] = new boolean[nums.length];
         //array to store the visited numbers
         int arr[]=new int[nums.length];
-
         //recursive function to store the results into res
         permute(nums,vis,0,nums.length,arr);
-
         //returning the product
         return res;
     }
 
-    public void permute(int[] nums,
-                        boolean vis[],
-                        int cur,
-                        int n,
-                        int arr[]) {
-
+    public void permute(int[] nums, boolean vis[], int cur, int n, int arr[]) {
         // just to make sure cur=current index is not more than n
         if(cur>n)return;
-
         //when all the elements have been stored in arr.
         if(cur==n){
             List<Integer>list=new ArrayList<>();
             for(int i=0;i<n;i++)
-            {
                 list.add(arr[i]);
-            }
-
             //returning after converting the array to list.
             res.add(list);
             return;
@@ -174,3 +157,5 @@ class Solution {
 }
 
 // 0 ms, faster than 100.00%
+
+// it faster than solution2, is it bcz it use int[] to store the value
