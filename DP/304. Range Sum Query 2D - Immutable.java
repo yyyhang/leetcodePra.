@@ -63,6 +63,7 @@ class NumMatrix {
         }
     }
 
+    // O(n)
     public int sumRegion(int row1, int col1, int row2, int col2) {
         int sum = 0;
         for (int i = row1; i <= row2; i++){
@@ -74,7 +75,41 @@ class NumMatrix {
 
 // 11 ms, faster than 80.78%, 44.8 MB, less than 96.39%
 
-
+//-------------------------------//
 
 // but also we can store the sum value of a rectangle from (0,0) to (i,j)
 // https://www.youtube.com/watch?v=PwDqpOMwg6U
+
+class NumMatrix {
+    private int[][] T;
+
+    public NumMatrix(int[][] matrix) {
+        int row = 0;
+        int col = 0;
+        if (matrix.length != 0) {
+            row = matrix.length;
+            col = matrix[0].length;
+        }
+        T = new int[row + 1][col + 1];
+        for (int i = 1; i < T.length; i++) {
+            for (int j = 1; j < T[0].length; j++) {
+                T[i][j] = T[i - 1][j] + T[i][j - 1] + matrix[i - 1][j - 1] - T[i - 1][j - 1];
+            }
+        }
+    }
+
+    // O(1)
+    public int sumRegion(int row1, int col1, int row2, int col2) {
+        row1++;
+        col1++;
+        row2++;
+        col2++;
+        return T[row2][col2] - T[row1 - 1][col2] - T[row2][col1 - 1] + T[row1 - 1][col1 - 1];
+    }
+}
+
+// 10 ms, faster than 100.00%, 45.6 MB, less than 24.34%
+
+// or read the graph instruction here
+// https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-304-range-sum-query-2d-immutable/
+
