@@ -9,3 +9,7 @@ QUESTION:
 85. biggest rectangle using dp
 
 84. using stack to get the biggest area. still need to review later, especially solution 1
+
+1202. Union-Find, but i still no idea how to put back to the string
+
+207, 210 using topological order

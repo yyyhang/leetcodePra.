@@ -50,7 +50,7 @@ class Solution {
                 if(grid[i][j] == 1) queue.offer(new int[]{j,i});
                 // why here is (j,i). In array, first one is height, and the second one is length
                 // but in queue, we push the coordinates. we need to use this to add direction
-                // but still feel confused why it matters. afterall, it needs to go all dirctions
+                // but still feel confused why it matters. after all, it needs to go all dirctions
                 // if we use wrong order of x,y, it will change anther point
                 // e.g. we might change [0,2] instead [2,0]
                 // so, if we want to change order here , we need to change all order of x and y later
@@ -72,7 +72,7 @@ class Solution {
                 // we visit this point all neighbours
                 for(int[] position: positions){
                     int x = land[0] + position[0], y = land[1] + position[1];
-                    // not exceed tje bound and not visited
+                    // not exceed the bound and not visited
                     if (x>=0 && x<grid[0].length && y>=0 && y<grid.length && grid[y][x] != 1){
                         // they will visit all direction. but if we not change here, it will turn 0 to 1 of a wrong point
                         grid[y][x] = 1;
@@ -100,10 +100,13 @@ class Solution {
 
     public int maxDistance(int[][] grid) {
         int cells = grid.length * grid[0].length;
+        // find the numbers of zeros
         for(int[] gr : grid)
-            for(int g : gr)if(g==1)cells--;
+            for(int g : gr) if (g==1) cells--;
         if(cells==grid.length * grid[0].length || cells==0)return -1;
         int it = 1;
+        // we change by depth, we only change 0's value
+        // we count until changed all 0s
         while(cells>0){
             for(int r = 0;r<grid.length;r++){
                 for(int c=0;c<grid[r].length;c++){
