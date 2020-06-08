@@ -43,18 +43,19 @@ class Solution {
 
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-
+        // build nodes
         for (int i = 0; i < numCourses; ++i)
             graph.add(new ArrayList<Integer>());
-
+        // build edges
         for (int i = 0; i < prerequisites.length; ++i) {
             int course = prerequisites[i][0];
             int prerequisite = prerequisites[i][1];
-            graph.get(course).add(prerequisite);
+            graph.get(prerequisite).add(course);
         }
         int[] visited = new int[numCourses];
         for (int i = 0; i < numCourses; ++i)
-            if (dfs(i, graph, visited)) return null;
+            if (dfs(i, graph, visited)) return new int[0]; //return null;
+            // else ans.add(0, i);
         int[] res = new int[numCourses];
         for (int i = 0; i < numCourses; i++) {
             res[i] = ans.get(i);
@@ -66,7 +67,7 @@ class Solution {
     private boolean dfs(int curr, ArrayList<ArrayList<Integer>> graph, int[] visited) {
         if (visited[curr] == 1) return true;
         if (visited[curr] == 2) {
-            ans.add(0, curr);
+            //ans.add(0, curr);     // we cannot add it here since we had add it to ans
             return false;
         }
 
@@ -75,7 +76,10 @@ class Solution {
         for (int next : graph.get(curr))
             if (dfs(next, graph, visited)) return true;
         visited[curr] = 2;
+        // all nodes will be add exactly once here
         ans.add(0, curr);
         return false;
     }
 }
+
+//  2 ms, faster than 99.73%
