@@ -26,8 +26,30 @@ Note:
 1 <= K <= A.length
  */
 
-class Solution {
-    public int subarraysWithKDistinct(int[] A, int K) {
+// first i come up with sliding windows,and find the fast need to back
+// but if every time the fast back to the position of slow when slow moves, it's O(n^2)
 
+// similar to 340
+
+
+class Solution {
+    public int subarraysWithKDistinct(int[] arr, int k) {
+        short[] count = new short[arr.length+1];
+        short unique=0;
+        int i=0, total=0, good=0;
+        for(int j=0; j<arr.length; j++){
+            if(count[arr[j]]++==0) unique++;
+            if(unique>k){
+                count[arr[i++]]--;
+                unique--;
+                good=0;
+            }
+            while(count[arr[i]]>1){
+                count[arr[i++]]--;
+                good++;
+            }
+            if(unique==k) total += good+1;
+        }
+        return total;
     }
 }
