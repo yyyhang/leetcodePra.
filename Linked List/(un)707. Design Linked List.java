@@ -40,6 +40,16 @@ At most 2000 calls will be made to get, addAtHead, addAtTail,  addAtIndex and de
 
 class MyLinkedList {
 
+    class Node() {
+        int val;
+        Node next;
+        Node(int x) {
+            val = x;
+            next = null;
+        }
+        Node(int val, Node )
+    }
+
     /** Initialize your data structure here. */
     public MyLinkedList() {
 
