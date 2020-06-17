@@ -39,47 +39,110 @@ At most 2000 calls will be made to get, addAtHead, addAtTail,  addAtIndex and de
  */
 
 class MyLinkedList {
+    // class Node() {} is not right to define class
 
-    class Node() {
+    // you have to use key word this here
+    class Node {
         int val;
         Node next;
         Node(int x) {
-            val = x;
-            next = null;
+            this.val = x;
+            this.next = null;
         }
-        Node(int val, Node )
+        Node(int x, Node next) {
+            this.val = x;
+            this.next = next;
+        }
     }
 
+    private Node head;
+    private Node tail;
+    private int size;
+
+    // just like 9024, we need to set the head and other things for the linked list
     /** Initialize your data structure here. */
     public MyLinkedList() {
-
+        head = tail = null;
+        size = 0;
     }
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
     public int get(int index) {
-
+        if (index < 0 || index >= size) return -1;
+        Node curr = new Node(0, head);
+        for (int i = 0; i <= index; i++) {
+            curr = curr.next;
+        }
+        return curr.val;
     }
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
     public void addAtHead(int val) {
-
+        head = new Node(val,head);
+        if (size == 0) tail = head;
+        size++;
     }
 
     /** Append a node of value val to the last element of the linked list. */
     public void addAtTail(int val) {
-
+        // this would be wrong since we create a node just point the end node, but no one points at it.
+//        tail = new Node(val, tail);
+//        if (size == 0) head = tail;
+//        size++;
+        // in case null pointer
+        Node n = new Node(val, tail);
+        if (size == 0) head = tail = n;
+        else tail = tail.next = n;
+        size++;
     }
 
     /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
     public void addAtIndex(int index, int val) {
-
+        if (index < 0 || index > size) return;
+        // Node curr = new Node(0, head);
+        // for (int i = 0; i < index-1; i++) curr = curr.next;
+        if (index == 0)  { addAtHead(val); return; }
+        if (index == size) { addAtTail(val); return; }
+        Node prev = new Node(0, head);
+        for (int i = 0; i < index; i++) prev = prev.next;
+        prev.next = new Node(val, prev.next);
+        size++;
     }
 
     /** Delete the index-th node in the linked list, if the index is valid. */
     public void deleteAtIndex(int index) {
-
+        if (index < 0 || index >= size) return;
+        /*
+        if (index == 0 && size == 1) {
+            head = tail = null;
+            return;
+        }
+        else if (index == 0) {
+            head = head.next;
+            return;
+        }
+        */
+        Node prev = new Node(0, head);
+        // give a real number, and check what you need
+        for (int i = 0; i < index; i++) prev = prev.next;
+        // delete
+        prev.next = prev.next.next;
+        // change head
+        if (index == 0) head = prev.next;
+        // then change tail
+        if (index == size - 1) tail = prev;
+        size--;
     }
 }
+
+// 8 ms, faster than 82.03%
+
+// the thing is that how can I move my tail to point at the last node?
+// set a condition
+
+// the index-th start from 0;
+
+// the most hard part is the index
 
 /**
  * Your MyLinkedList object will be instantiated and called as such:
