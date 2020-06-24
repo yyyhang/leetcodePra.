@@ -53,8 +53,37 @@ Another valid answer is [5,2,6,null,4,null,7].
  *     }
  * }
  */
+
+
+
 class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
+        if (root == null) return root;
+        // find the node
+        if (key == root.val) {
+            root = helper(root);
+        }
+        else if (key > root.val) {
+            root.right = deleteNode(root.right, key);
+        } else {
+            root.left = deleteNode(root.left, key);
+        }
+        return root;
+    }
 
+    private TreeNode helper(TreeNode root) {
+        if (root.left == null) return root.right;
+        else if (root.right == null) return root.left;
+        // if it has 2 children, we find the smallest value in right subtree
+        TreeNode tmp = root.right;
+        while (tmp.left != null) tmp = tmp.left;
+        // we put all the left subtree to this value, instead changing the node with the target one
+        tmp.left = root.left;
+        return root.right;
     }
 }
+
+// 0 ms, faster than 100.00%, jump out of the box
+
+
+// can also see this: https://zxi.mytechroad.com/blog/tree/leetcode-450-delete-node-in-a-bst/
