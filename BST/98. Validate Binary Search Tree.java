@@ -65,3 +65,18 @@ class Solution {
         }
     }
 }
+
+// another way:
+
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        // -Double.MAX_VALUE
+        return helper(root,-Double.MAX_VALUE,Double.MAX_VALUE);
+    }
+    // why cannot use float?
+    private boolean helper(TreeNode node, double min, double max) {
+        if (node == null) return true;
+        if (!(min<node.val && node.val < max)) return false;
+        return helper(node.left, min, node.val) && helper(node.right, node.val, max);
+    }
+}
