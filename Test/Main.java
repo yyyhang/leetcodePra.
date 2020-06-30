@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,9 +18,11 @@ class TreeNode {
 class Main{
     public static void main(String[] args) {
         Solution res = new Solution();
-        TreeNode right = new TreeNode(20,new TreeNode(15),new TreeNode(7));
-        TreeNode root = new TreeNode(-10, new TreeNode(9), right);
-        res.findKthNumber(3,3,5);
+        // int[] nums = {1,3,1,5,2,3,5,7,9,8};
+        int[] nums = {1,6,1};
+        // TreeNode right = new TreeNode(20,new TreeNode(15),new TreeNode(7));
+        // TreeNode root = new TreeNode(-10, new TreeNode(9), right);
+        res.smallestDistancePair(nums, 3);
 
     }
 }
@@ -27,28 +30,14 @@ class Main{
 
 
 class Solution {
-    public int findKthNumber(int m, int n, int k) {
-        int left = 1, right = n*m;
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            int cnt = helper(m, n, k, mid);
-            if (cnt >= k) right = mid;
-            else left = mid + 1;
+    public int smallestDistancePair(int[] nums, int k) {
+        Arrays.sort(nums);
+        int[] diff = new int[nums.length - 1];
+        int j = 0;
+        for (int i = 1; i <= nums.length-1; i++) {
+            diff[j++] = nums[i]  - nums[i-1];
         }
-        return left;
-    }
-
-    private int helper(int m, int n, int k, int mid) {
-        int x = 1, y = n;
-        int cnt = 0;
-        while (x <= m && y >= 0) {
-            if (x*y <= mid) {
-                cnt += y;
-                x++;
-            } else {
-                y--;
-            }
-        }
-        return cnt;
+        Arrays.sort(diff);
+        return diff[k-1];
     }
 }
