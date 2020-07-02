@@ -93,7 +93,7 @@ class Solution_mine {
         inorder(root.left, ans);
 
         if (pre == null || root.val != pre) cnt = 1;
-        else if (pre == null || root.val == pre) cnt++;
+        else if (root.val == pre) cnt++;
         pre = root.val;
         if (cnt > max) {
             ans.clear();
