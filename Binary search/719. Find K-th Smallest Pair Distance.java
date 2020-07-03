@@ -68,9 +68,15 @@ class Solution {
     private int findPairs(int[] nums, int target) {
         int size = nums.length;
         int count = 0;
+        // we move end to count how many elements it has passed
         int end = 0;
         for (int i = 0; i < size; i++) {
+            // since mid is the difference of two numbers, we need to compute the difference of these
+            // elements to compare with mid;
+            // btw, we no need to return end back to i, since i move forward, the diff must less than the
+            // previous round
             while (end + 1 < size && nums[end + 1] - nums[i] <= target) end++;
+            // end is the index of the curr element, rather than the value of the element
             count += end - i;
         }
         return count;
